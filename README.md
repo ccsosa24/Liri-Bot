@@ -12,9 +12,11 @@ Technologies Used:
 Spotify API TMDB API BandinTown API
 
 Movie
-![](movie-this.gif)
+![movie](https://github.com/ccsosa24/Liri-Bot/movie-this.gif)
+
+
 
 
 Concert
-![](concert-this.gif)
+![concert](https://github.com/ccsosa24/Liri-Bot/concert-this.gif)
 
