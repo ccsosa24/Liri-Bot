@@ -3,13 +3,17 @@ require('dotenv').config();
 var keys = require("./keys");
 var request = require("request");
 var filename = ("./random.txt");
-var log = require('simple-node-logger').createSimpleFileLogger(filename);
-log.setLevel('all');
-
+//var log = require('simple-node-logger').createSimpleFileLogger(filename);
+// log.setLevel('all');
 var axios = require("axios");
-
 var Spotify = require('node-spotify-api');
-var spotify = new Spotify(keys.spotify);
+var spotify = new Spotify({
+    id: "8405cfc60e7440e187cd5a0aba67eca2",
+    secret: "603df7a5b27a4c8fa1bf3bb8b7acaa6f"
+  });
+  
+
+//var spotify = new Spotify(spotify);
 
 var getArtistName = function (artist) {
     return artist.name;
@@ -23,36 +27,24 @@ for(var i = 5; i < process.length; i++){
     secondCommand += '+' + process.argv[i];
 }
 
-
-var spotify = new Spotify({
-  id: "8405cfc60e7440e187cd5a0aba67eca2",
-  secret: "603df7a5b27a4c8fa1bf3bb8b7acaa6f"
-});
-
 mySwitch(userCommand);
 
 
-
-
-
-
-
-
 // SPOTIFY 
-var sporifyMe = function (songName) {
+function spotifyMe(songName) {
+
   if (songName === undefined) {
     songName = "Freak like me";
   }
 
-
-  spotify.search({ type: 'track', query: userCommand, limit: 5 }, function (err, data) {
+  spotify.search({ type: 'track', query: songName, limit: 5 }, function (err, data) {
     if (err) {
       return console.log('Error occurred: ' + err);
     }
 
 
-    var songs = data.tracks.items;
-    console.log(data);
+    var songs = data.tracks;
+    console.log(songs);
 
     for (var i = 0; i < songs.length; i++) {
       console.log(i);
@@ -68,22 +60,25 @@ var sporifyMe = function (songName) {
 };
 
 
-
+function testfun(){
+    console.log("your in the test function")
+}
 
 
 function mySwitch(userCommand) {
-  switch (command) {
+  switch (userCommand) {
     case 'concert-this':
-      hearMyBands(value);
+      hearMyBands(secondCommand);
       break;
     case 'spotify-this-song':
-      spotifyMe(value);
+    //    testfun()
+      spotifyMe(secondCommand);
       break;
-    case 'moive-this':
-      movieUs(value);
+    case 'movie-this':
+      movieUs(secondCommand);
       break;
     case 'do-what-it-says':
-      doWhat();
+      doWhat(secondCommand);
       break;
 
     
@@ -95,26 +90,27 @@ function mySwitch(userCommand) {
 
   // MOVIES
 
-  function movieUs() {
-      var movieName = secondCommand;
+  function movieUs(movieName) {
+   
+      //var movieName = secondCommand;
       var queryUrl = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
   
     request(queryUrl, function (error, response, body) {
         if (!error && response.statusCode === 200){
             var body = JSON.parse(body);
 
-
-            logOutput('================ Movie Info =============');
-            logOutput("Title: " +body.Title);
-            logOutput("Release Year: " + body.Year);
-            logOutput("IMdB Rating: " + body.Year);
-            logOutput("Country: " + body.Country);
-            logOutput("Language: " + body.Language);
-            logOutput("Plot: " + body.Plot);
-            logOutput("Actors: " + body.Actors);
-            logOutput("Rotten Tomatoes Rating: " + body.Ratings[2].Value);
-            logOutput("Rotten Tomatoes URL: " + body.tomatoURL);
-            logOutput('================= FIN ==================');
+           
+            console.log('================ Movie Info =============');
+            console.log("Title: " +body.Title);
+            console.log("Release Year: " + body.Year);
+            console.log("IMdB Rating: " + body.Year);
+            console.log("Country: " + body.Country);
+            console.log("Language: " + body.Language);
+            console.log("Plot: " + body.Plot);
+            console.log("Actors: " + body.Actors);
+            console.log("Rotten Tomatoes Rating: " + body.Ratings[0].Value);
+            console.log("Rotten Tomatoes URL: " + body.tomatoURL);
+            console.log('================= FIN ==================');
 
         }
         else {
@@ -133,6 +129,7 @@ function mySwitch(userCommand) {
   
 }
 
+
  function doWhat() {
      fs.readFile("ramdon.txt", "utf8", function (error, data) {
          if(!error);
@@ -141,9 +138,6 @@ function mySwitch(userCommand) {
          var cmds = data.toString().split(',');
      });
  }
-
-
-
 
 
 
