@@ -56,3 +56,10 @@ Concert
 Spotify 
 ![songs](https://github.com/ccsosa24/Liri-Bot/song-this.gif)
 
+
+
+![Screenshot](movie1.png)
+
+![Screenshot](song2.png)
+
+![Screenshot](Bands2.png)
