@@ -11,5 +11,10 @@ Searches band/artists
 Technologies Used:
 Spotify API TMDB API BandinTown API
 
-
+Movie
 ![](movie-this.gif)
+
+
+Concert
+![](concert-this.gif)
+

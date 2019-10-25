@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+
+var fs = require("fs");
+var moment = require("moment");
 var keys = require("./keys");
 var request = require("request");
 var filename = ("./random.txt");
@@ -143,21 +146,36 @@ function mySwitch(userCommand) {
 
   // BAND IN TOWN
   function hearMyBands(artist) {
-    var url = 'https://rest.bandsintown.com/artists/' + artist + '/events?';
-    axios.get(url, {
-      params: {
-        app_id: 'codingbootcamp'
-      }
-    })
-      .then(function (response) {
-        console.log(response.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  }
+    var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=[key]";
+    
+    console.log(queryURL); 
+
+    axios.get(queryURL).then(
+        function(bandResponse){
+            console.log("Venue: " + bandResponse.data[0].venue.name);
+            console.log("City: " + bandResponse.data[0].venue.city);
+            console.log(moment(bandResponse.data[0].datetime).format("MM/DD/YYYY"));
+        }
+    );
+};
+
+
+function bandInfo(){
+    var bandName = "";
+    for (var i = 3; i < userInput.length; i++){
+        if (i > 3 && i < userInput.length){
+            bandName = bandName + "+" + userInput[i];
+        }
+        else{
+            bandName += userInput[i];
+        }
+    }
+
+
+
 
 
 
 }
 
+}
