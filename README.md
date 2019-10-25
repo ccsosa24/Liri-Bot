@@ -47,19 +47,19 @@ Technologies Used:
 Spotify API TMDB API BandinTown API
 
 Movie
-![movie](https://github.com/ccsosa24/Liri-Bot/movie-this.gif)
+![movie](gifs/movie-this.gif)
 
 
 Concert
-![concert](https://github.com/ccsosa24/Liri-Bot/concert-this.gif)
+![concert](gifs/concert-this.gif)
 
 Spotify 
-![songs](https://github.com/ccsosa24/Liri-Bot/song-this.gif)
+![songs](gifs/Song-this.gif)
 
 
 
-![Screenshot](movie1.png)
+![Screenshot](gifs/movie1.png)
 
-![Screenshot](song2.png)
+![Screenshot](gifs/Song2.png)
 
-![Screenshot](Bands2.png)
+![Screenshot](gifs/Bands2.png)
